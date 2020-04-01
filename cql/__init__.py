@@ -1,9 +1,13 @@
 from IPython.core.magic import Magics, magics_class, cell_magic, line_magic, needs_local_scope
-from IPython.config.configurable import Configurable
 from cassandra.cluster import Cluster
 from cassandra.query import ordered_dict_factory, SimpleStatement
 from cassandra.protocol import ConfigurationException
 from prettytable import PrettyTable
+
+try:
+    from traitlets.config.configurable import Configurable
+except:
+    from IPython.config.configurable import Configurable
 
 try:
     import numpy as np
