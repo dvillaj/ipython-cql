@@ -64,7 +64,7 @@ class CQLMagic(Magics, Configurable):
 
     @line_magic("keyspace")
     def set_keyspace(self, line, cell="", local_ns=None):
-        print "Using keyspace %s" % line
+        print("Using keyspace %s" % line)
         session.set_keyspace(line)
 
     @line_magic("tables")
@@ -116,7 +116,7 @@ class CQLMagic(Magics, Configurable):
     @line_magic("desc")
     def describe(self, line, cell="", local_ns=None):
         table = cluster.metadata.keyspaces[session.keyspace].tables[line]
-        print table.export_as_string()
+        print(table.export_as_string())
 
 
     @line_magic("trace")
