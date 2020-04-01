@@ -2,6 +2,7 @@ from IPython.core.magic import Magics, magics_class, cell_magic, line_magic, nee
 from IPython.config.configurable import Configurable
 from cassandra.cluster import Cluster
 from cassandra.query import ordered_dict_factory, SimpleStatement
+from cassandra.protocol import ConfigurationException
 from prettytable import PrettyTable
 
 try:
@@ -50,10 +51,14 @@ class CQLMagic(Magics, Configurable):
 
         if cell:
             line = cell
-        result = session.execute(line)
 
-        if not result:
-            return "No results."
+        try:
+            result = session.execute(line)
+            if not result:
+                return "No results."
+
+        except ConfigurationException as e:
+            return e.message
 
         columns = result[0].keys()
         table = PrettyTable(columns)
