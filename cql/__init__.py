@@ -64,7 +64,7 @@ class CQLMagic(Magics, Configurable):
         except ConfigurationException as e:
             return e.message
         
-        except Exception, e:
+        except Exception as e:
             return str(e)
 
         columns = result[0].keys()
