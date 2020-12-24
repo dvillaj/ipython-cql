@@ -63,6 +63,9 @@ class CQLMagic(Magics, Configurable):
 
         except ConfigurationException as e:
             return e.message
+        
+        except InvalidRequest as e:
+            return "InvalidRequest: " + e.message
 
         columns = result[0].keys()
         table = PrettyTable(columns)
