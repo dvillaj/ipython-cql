@@ -2,6 +2,7 @@ from IPython.core.magic import Magics, magics_class, cell_magic, line_magic, nee
 from cassandra.cluster import Cluster
 from cassandra.query import ordered_dict_factory, SimpleStatement
 from cassandra.protocol import ConfigurationException
+from cassandra import InvalidRequest
 from prettytable import PrettyTable
 
 try:
